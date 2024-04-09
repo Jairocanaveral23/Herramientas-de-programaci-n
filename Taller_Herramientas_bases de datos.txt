@@ -1,0 +1,98 @@
+/*Consulta para obtener todos los libros de un autor específico.
+Para esto, deberá declarar una variable asociada al autor,
+para que la consulta sea más dinámica.*/
+
+DECLARE @NombreAutor VARCHAR(50)
+SET @NombreAutor = 'Stephen King'
+
+SELECT Libros.*
+FROM Libros
+INNER JOIN Autores
+on Libros.autorId = Autores.id
+WHERE Autores.nombre = @NombreAutor;
+
+/*Consulta para obtener todos los libros de una categoría determinada.
+Para esto,deberá declarar una variable asociada a la categoría,
+para que la consulta sea más dinámica.*/
+
+DECLARE @NombreCategoria VARCHAR(50) =  'Terror';
+
+SELECT L. *
+FROM Libros L
+INNER JOIN Categorias C
+on L.categoriaId = C.id
+WHERE c.nombre = @NombreCategoria
+
+/*Consulta para obtener todos los libros de 
+Gabriel García Márquez, y que hayan sido
+publicados después de 1970.*/
+
+
+DECLARE @NombreAutor2 VARCHAR(50)
+SET @NombreAutor2 = 'Gabriel García Márquez'
+
+SELECT Libros.*
+FROM Libros
+INNER JOIN Autores
+on Libros.autorId = Autores.id
+WHERE Autores.nombre = @NombreAutor2 AND Libros.fechaPublicacion > '1970'
+
+/*Consulta para obtener todos los libros 
+de la categoría Terror y publicados después
+de 1976.*/
+
+DECLARE @NombreCategoria2 VARCHAR(50) =  'Terror';
+
+SELECT L. *
+FROM Libros L
+INNER JOIN Categorias C
+on L.categoriaId = C.id
+WHERE c.nombre = @NombreCategoria2 AND L.fechaPublicacion > '1976'
+
+/*Consulta para obtener todos los libros 
+cuyo título contenga la palabra Harry.*/
+
+SELECT *
+FROM Libros
+WHERE titulo LIKE '%Harry%'
+
+/*Crea un procedimiento almacenado que calcule la cantidad de libros publicados por
+una editorial específica. El procedimiento debe tomar el nombre de la editorial como
+parámetro de entrada y devolver el número total de libros publicados por esa
+editorial.*/
+
+CREATE PROCEDURE SP_CalcularCantidadLibrosPorEditorial
+@NombreEditorial VARCHAR(50)
+
+AS
+SELECT COUNT(*) AS Cantidad
+FROM Editoriales
+INNER JOIN Libros
+ON Editoriales.id = Libros.editorialId
+WHERE Editoriales.nombre = @NombreEditorial
+
+
+EXEC SP_CalcularCantidadLibrosPorEditorial 'Salamandra'
+
+/*Crea un procedimiento almacenado que devuelva la lista de los libros más recientes
+por categoría. El procedimiento debe tomar la categoría como parámetro de entrada
+y devolver una lista de libros ordenados por fecha de publicación, de manera que se
+muestre el libro más reciente de cada categoría.*/
+
+CREATE PROCEDURE SP_ListaLibrosMasRecientesPorCategoria
+    @Categoria2 VARCHAR(50)
+AS
+BEGIN
+    SELECT L.titulo, 
+           L.fechaPublicacion, 
+           L.categoriaId
+    FROM Libros L
+    INNER JOIN Categorias C ON L.categoriaId = C.id
+    WHERE C.nombre = @Categoria2
+        AND L.fechaPublicacion = (SELECT MAX(fechaPublicacion) 
+                                   FROM Libros 
+                                   WHERE categoriaId = L.categoriaId)
+    ORDER BY L.fechaPublicacion DESC;
+END;
+
+EXEC SP_ListaLibrosMasRecientesPorCategoria 'Ficción';
