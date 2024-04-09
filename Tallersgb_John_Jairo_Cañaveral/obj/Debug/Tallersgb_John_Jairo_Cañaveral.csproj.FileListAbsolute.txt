@@ -1,0 +1,7 @@
+C:\Users\TOSHIBA\source\Tallersgb_John_Jairo_Cañaveral\bin\Debug\Tallersgb_John_Jairo_Cañaveral.exe.config
+C:\Users\TOSHIBA\source\Tallersgb_John_Jairo_Cañaveral\bin\Debug\Tallersgb_John_Jairo_Cañaveral.exe
+C:\Users\TOSHIBA\source\Tallersgb_John_Jairo_Cañaveral\bin\Debug\Tallersgb_John_Jairo_Cañaveral.pdb
+C:\Users\TOSHIBA\source\Tallersgb_John_Jairo_Cañaveral\obj\Debug\Tallersgb_John_Jairo_Cañaveral.csproj.AssemblyReference.cache
+C:\Users\TOSHIBA\source\Tallersgb_John_Jairo_Cañaveral\obj\Debug\Tallersgb_John_Jairo_Cañaveral.csproj.CoreCompileInputs.cache
+C:\Users\TOSHIBA\source\Tallersgb_John_Jairo_Cañaveral\obj\Debug\Tallersgb_John_Jairo_Cañaveral.exe
+C:\Users\TOSHIBA\source\Tallersgb_John_Jairo_Cañaveral\obj\Debug\Tallersgb_John_Jairo_Cañaveral.pdb
